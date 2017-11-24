@@ -91,6 +91,22 @@ class Data extends AbstractHelper
         return 1;
     }
 
+
+    /**
+     * Returns the template string
+     *
+     * @return string
+     */
+    public function getTemplate()
+    {
+        $template = $this->scopeConfig->getValue(
+            'baseprice/general/template',
+            ScopeInterface::SCOPE_STORE
+        );
+        return $template;
+    }
+
+
     /**
      * Returns the base price text according to the configured template
      *
@@ -99,10 +115,7 @@ class Data extends AbstractHelper
      */
     public function getBasePriceText(Product $product)
     {
-        $template = $this->scopeConfig->getValue(
-            'baseprice/general/template',
-            ScopeInterface::SCOPE_STORE
-        );
+        $template = $this->getTemplate();
 
         $basePrice = $this->getBasePrice($product);
 
